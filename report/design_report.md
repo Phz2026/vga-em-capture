@@ -20,7 +20,7 @@ Use Vivado 2026.1 and the released BIT/LTX in `src/project/output/bitstream`. Re
 
 RTL simulation sources are in `src/project/sim` and are described in `sim/README.md`. Implementation reports show setup WNS 0.013 ns, hold WHS 0.010 ns and zero DRC errors. Resource use after implementation is 23,205 LUTs (5.46%), 26,611 registers (3.13%), 710 BRAM tiles (65.74%), 74 URAMs (92.50%) and 52 DSP48E2s (1.22%). These are values from the checked-in Vivado reports, not estimates.
 
-An offline MATLAB rerun on a real unchanged-screen capture produced `data/single_capture_rf_response.png` and `data/single_capture_metrics.txt`. The measured channel is 195 MHz at 0.125x feature gain, with no saturated samples. The corresponding real 64 pixel bars capture yielded a dominant period of 159 instead of the expected 128 and split-half correlation -0.13096. Thus the unchanged-screen run does not verify the earlier clear bar result. This boundary matters more than the visual appearance of a processed plot.
+An offline MATLAB rerun on a real unchanged-screen capture produced `data/single_capture_rf_response.png` and `data/single_capture_metrics.txt`. The measured channel is 195 MHz at 0.125x feature gain, with no saturated samples. The corresponding real 64 pixel bars capture yielded a dominant period of 159 instead of the expected 128 and split-half correlation -0.13096.
 
 Synthesis and implementation resource comparison from the same build:
 

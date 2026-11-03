@@ -2,7 +2,7 @@
 
 An FPGA and MATLAB research prototype that captures a 195 MHz RF magnitude response while a VGA display holds a 1024 x 768 @ 60 Hz image. The operator changes the displayed image manually. One Vivado Tcl command programs the released bitstream and initializes clocks; later captures reuse the programmed FPGA and open a measured grayscale response in MATLAB.
 
-The current output is **not a decoded VGA RGB image**. Pixel accurate recovery of arbitrary color images has not been demonstrated. A historical clear 64 pixel bar result required a black-screen control; the unchanged-screen acquisition in this repository does not guarantee the same clarity. See [the measured results](data/README.md) and [design report](report/design_report.md).
+The current output is **not a decoded VGA RGB image**. Pixel accurate recovery of arbitrary color images has not been demonstrated. See [the measured results](data/README.md) and [design report](report/design_report.md).
 
 ## Repository map
 

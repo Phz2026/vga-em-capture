@@ -13,4 +13,4 @@ For the bar diagnostic, replace the function with `analyze_bars64`, the input wi
 
 For the unchanged-screen real capture, `single_capture_metrics.txt` reports `rf_mhz=195`, gain Q8=32 (0.125x), zero saturated fraction and a raw 99th percentile of 1. The output is a measured RF magnitude response, not decoded RGB pixels.
 
-The real 64 pixel bar capture in `bars64_capture_metrics.txt` had `period_peak=159`, whereas the known pattern would suggest 128 samples. Its split-half correlation was -0.13096. Therefore this particular single-screen run does **not** verify clear bar reconstruction. Earlier clearer bars used a black-screen control and a different analysis path. The repository preserves this limitation rather than substituting a simulated image.
+The real 64 pixel bar capture in `bars64_capture_metrics.txt` had `period_peak=159`, whereas the known pattern would suggest 128 samples. Its split-half correlation was -0.13096. Earlier bar measurements used a black-screen control and a different analysis path.
