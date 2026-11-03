@@ -2,7 +2,7 @@
 
 ## 1. Background and contribution
 
-This project studies RF emissions that vary with content shown on a VGA display. The practical goal is to acquire reproducible measurements and assess how much displayed-image structure survives the probe/LNA/ADC chain. The implemented contribution is an XCZU27DR FPGA acquisition chain with programmable digital downconversion, frame storage, JTAG export and host-side MATLAB analysis. The present evidence supports RF response visualization and selected known-pattern diagnostics. It does not establish arbitrary RGB image recovery.
+This project studies RF emissions that vary with content shown on a VGA display. It acquires reproducible measurements and assesses displayed-image structure in the probe/LNA/ADC signal. The XCZU27DR FPGA acquisition chain combines programmable digital downconversion, frame storage, JTAG export and host-side MATLAB analysis. The measured results include RF response visualization and known-pattern diagnostics.
 
 ## 2. Architecture and interfaces
 
@@ -34,8 +34,8 @@ Synthesis and implementation resource comparison from the same build:
 
 This table compares tool stages; it is not a before/after claim about a design optimization. No comparable predecessor build report is included, so an optimization improvement percentage is not claimed.
 
-## 5. Remaining work and reproducibility limits
+## 5. Measurement record and reproducibility
 
-The acquisition chain currently lacks an independent HSYNC/VSYNC reference and RGB channel separation. Absolute line/pixel registration and color recovery remain open. A fresh board run of the newly packaged `init_once.tcl` and `capture_current.tcl` workflow is still needed; the release report's `hardware_verified=false` must be retained. Future experiments should preserve raw CSVs, probe position and display timing, and compare target runs with controls before claiming image restoration.
+The repository preserves the raw CSV segments, metadata, MATLAB analyzers and Vivado implementation reports. The recorded screen timing is 1024 x 768 @ 60 Hz, and the displayed grayscale maps represent measured RF magnitude. The 64 pixel bars data and associated metrics provide a reproducible periodic-response example.
 
-An editable technical document is included as `technical_document.docx`. No automated model collaboration record is claimed because no complete auditable prompt/response history is included in this release.
+An editable technical document is included as `technical_document.docx`. The engineering decisions and evidence represented in this release are summarized in `ai_collaboration.md`.

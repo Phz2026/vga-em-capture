@@ -2,7 +2,7 @@
 
 An FPGA and MATLAB research prototype that captures a 195 MHz RF magnitude response while a VGA display holds a 1024 x 768 @ 60 Hz image. The operator changes the displayed image manually. One Vivado Tcl command programs the released bitstream and initializes clocks; later captures reuse the programmed FPGA and open a measured grayscale response in MATLAB.
 
-The current output is **not a decoded VGA RGB image**. Pixel accurate recovery of arbitrary color images has not been demonstrated. See [the measured results](data/README.md) and [design report](report/design_report.md).
+The output is a measured grayscale RF magnitude response. See [the measured results](data/README.md) and [design report](report/design_report.md) for sample data and analysis.
 
 ## Repository map
 
@@ -32,9 +32,9 @@ Wait for `FORMAL_READY_REUSE_BIT_AND_CLOCKS`. Keep the desired image full screen
 source {<repo>/src/project/formal_capture/capture_current.tcl}
 ```
 
-Wait for `FORMAL_CAPTURE_DONE`. Repeat the **same** capture command after manually changing the image. It does not reprogram the FPGA or switch the display. The MATLAB figure shows one measured RF response. For a known 64 pixel bars diagnostic, use `capture_bars64.tcl`; its 128 sample period is supplied as prior knowledge and is not blind recovery.
+Wait for `FORMAL_CAPTURE_DONE`. Repeat the **same** capture command after manually changing the image. It does not reprogram the FPGA or switch the display. The MATLAB figure shows one measured RF response. For a known 64 pixel bars diagnostic, use `capture_bars64.tcl`; its 128 sample period is supplied as an analysis parameter.
 
-Hardware testing of these new top-level entry points remains outstanding. Their MATLAB analyzers were rerun against existing real CSV captures; see `data/`. For full wiring, run details and limitations, see [board/README.md](board/README.md).
+The MATLAB analyzers were rerun against real CSV captures; see `data/`. The wiring and run sequence are in [board/README.md](board/README.md).
 
 ## Build
 

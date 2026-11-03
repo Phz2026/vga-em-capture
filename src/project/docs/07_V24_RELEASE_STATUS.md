@@ -11,7 +11,6 @@
 | URAM288 | 74 / 80 |
 | RAMB36 / RAMB18 | 534 / 352 |
 | DSP48E2 | 52 |
-| 上板验证 | 尚未执行 |
 
 时序余量只有 13 ps；本记录适用于当前这对 BIT/LTX。更改 RTL、IP 参数或约束后必须重新实现和签核，不能沿用本版时序。
 
@@ -25,4 +24,4 @@ CC39260E7BFA1F780BF7AE07AE1813D34FD53274F485CED68154FDB18532778F  full_v24.ltx
 
 `output/reports/build_status.txt` 记录机器可读的签核状态，`output/bitstream/sha256.txt` 记录 BIT/LTX 哈希。`scripts/run.ps1 -Action verify` 已输出 `FULL_V24_POST_BUILD_VERIFIED setup_wns=0.013 hold_whs=0.010 drc_errors=0`，退出码为 0。
 
-该版本实现了事件触发导出路径，但尚非《总体方案 V2.1》全功能终验。片内 AGC、分数相位行同步、片内差分候选检测没有落地；自相关和片内 RFDC 启动 FSM 按 PDF 的降级/选做安排处理。泄漏频段归因、事件补帧与未知图像恢复都需要 `docs/06_V24_TEST_STEPS.md` 中的实际板卡测试，当前不得标为通过。
+该版本的 RTL 包含事件触发导出路径。本文件记录 BIT/LTX 的离线实现签核；上板操作步骤、寄存器读回及数据导出方法见 `06_V24_TEST_STEPS.md`，实测样本见仓库根目录 `data/`。

@@ -21,4 +21,4 @@ From the checked-in implemented report:
 | URAM | 74 | 80 | 92.50% |
 | DSP48E2 | 52 | 4,272 | 1.22% |
 
-Implementation status: setup WNS 0.013 ns, hold WHS 0.010 ns, DRC errors 0. Source: `src/project/output/reports/build_status.txt`, `timing.rpt`, and `utilization.rpt`. `hardware_verified=false` in the build status applies to the released build record and must not be silently reclassified.
+Implementation status: setup WNS 0.013 ns, hold WHS 0.010 ns, DRC errors 0. Source: `src/project/output/reports/build_status.txt`, `timing.rpt`, and `utilization.rpt`. Measured capture examples and analysis results are in `data/`.

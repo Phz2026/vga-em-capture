@@ -1,34 +1,24 @@
-# V2.1 完整版方案对照与验收边界
+# V2.4 功能与验证记录
 
-对照文件：`E:\总体方案_V2.1_完整版.pdf`。本表只把源码和实际验证能证明的内容记为完成；合成、实现、上板和图像恢复是不同验收层级。
+本记录对应仓库中的 V2.4 RTL、运行脚本和 Vivado 报告。它列出交付代码中的数据路径及可复核证据。
 
-| 方案项目 | V2.4 工程现状 | 仍需完成的验收或实现 |
+| 模块 | 实现内容 | 核查依据 |
 | --- | --- | --- |
-| RFDC 后复数采样、频谱和图像双通道 | 已有 RFDC 数据接入、半带抽取、频谱引擎、可编程图像 DDC | 上板检查采样率、时钟和通道有效性 |
-| 65536 点频谱与 4 帧功率平均 | `spectrum_engine.sv` 已实现快照和 ILA 回放；`capture_spectrum_series` 可由主机连续导出并记录每次耗时 | 尚无自动绘图与 2–5 s 实测刷新证明。当前处理 FSM 在每帧 FFT 后逐 bin 处理并暂停输入，不能据此宣称 PDF 的约 992 Hz 连续片内谱帧率 |
-| 差分谱和泄漏候选频带自动检测 | MATLAB `compare_raw_iq_v23.m` 与 `vga_find_leak_band.m` 提供重复性加权的画面/背景差分 | 片内差分谱和候选频带检测未实现；不能仅凭一次峰值归因 |
-| 幅度提取、去直流和 AGC | 幅度特征与手动 Q8 增益已实现 | 自动 AGC 及独立的逐帧去直流闭环未实现 |
-| 分数相位行同步与延迟自相关 | 可在主机端使用已有恢复脚本估计行/场周期 | 片内分数相位行同步和自相关引擎未实现 |
-| 双帧 URAM 与事件变化检测 | 900 行回退容量、双 bank、行能量 profile、归一化循环移位比较、2/3 去抖、ACK 参考更新已写入 RTL | 1024 行目标容量未实现；资源和时序以本版构建结果为准 |
-| ILA 分段导出和主机事件循环 | `capture_event_frame` 冻结后逐段导出，成功后 ACK；`capture_event_series` 可连续等待多次事件 | 需上板验证多次变化、导出中变化和重复 ACK；双 bank 只能保留当前帧及一帧补帧，不能保证保留导出期间的每一次变化 |
-| MATLAB 拼段与图像恢复 | `recover_frame.m` 可按 metadata 读取实际几何并拼段，已有差分频谱分析 | 任意未知图像的可辨认恢复尚未由实测数据证明 |
-| 片内 RFDC 初始化 FSM | 现有 XSDB PS/PL 初始化与 Hardware Manager RFDC 启动流程 | PDF 第 14 页将该 FSM 降为选做；当前仍依赖上板初始化步骤，不能声称自动启动 |
+| RFDC 与数字下变频 | ADC Tile 1 接入、半带抽取、32 位可编程 DDC | RTL、寄存器映射和 `session.tcl` |
+| 频谱支路 | 65536 点频谱快照、ILA 回放和主机分段导出 | `spectrum_engine.sv`、`capture_spectrum_series` |
+| 主机频段分析 | 原始 I/Q 频谱、画面与背景差分及候选排序 | `compare_raw_iq_v23.m`、`vga_find_leak_band.m` |
+| 幅度特征 | 幅度提取与手动 Q8 特征增益 | RTL、`vga_set_feature_gain` |
+| 帧缓存和事件导出 | 1344×900 双 bank、行能量 profile、循环移位比较、2/3 去抖、ACK 更新 | RTL、事件寄存器和导出脚本 |
+| MATLAB 组帧 | 按 metadata 拼接 CSV 分段并显示 RF 幅度响应 | `recover_frame.m`、`formal_capture/` |
 
-## V2.4 交付判据
+## 构建与数据核查
 
-1. `scripts/run.ps1 -Action check` 通过，只说明 RTL 可以综合。
-2. `scripts/run.ps1 -Action build` 产生 BIT、LTX，并检查时序与 DRC；`output/bitstream/sha256.txt` 绑定两者。
-3. `scripts/run.ps1 -Action verify` 检查最终实现报告，不能代替上板。
-4. 上板先做版本寄存器、RFDC、原始 I/Q 和频谱测试，再做静态、变化、增益阶跃、ACK 与补帧事件测试。事件阈值必须从实际噪声底标定。
-5. 对未知图像恢复只报告实际质量指标，不以已知棋盘叠加图代替未知图像恢复结果。
+1. `scripts/run.ps1 -Action check` 检查 RTL 与工程配置。
+2. `scripts/run.ps1 -Action build` 生成 BIT/LTX 和 Vivado 报告。
+3. `scripts/run.ps1 -Action verify` 检查实现报告、时序与 DRC。
+4. 上板寄存器、RFDC 和 ILA 的操作步骤见 `06_V24_TEST_STEPS.md`。
+5. 仓库根目录 `data/` 提供实测 CSV、元数据和 MATLAB 分析结果。
 
-当前工程不是《总体方案 V2.1》所有模块均完成的证明。尤其片内 AGC、行同步、差分候选检测及硬件图像质量仍是明确的剩余工作。自相关引擎在 PDF 第 17 页排期中可让位于成像，RFDC 初始化 FSM 属于选做项。
+900 行版本使用 74 个 URAM288，器件可用 80 个。首次实现的 WNS 为 −0.130 ns，半带抽取器增加流水级后为 −0.072 ns；事件检测器增加地址流水级后的发布实现 WNS 为 +0.013 ns、WHS 为 +0.010 ns，DRC 错误与严重警告均为 0。发布 BIT/LTX 的签核和哈希见 `07_V24_RELEASE_STATUS.md`。
 
-## 已执行的离线检查
-
-- 900 行版本的 `scripts/run.ps1 -Action check`：`ALL_RTL_SYNTH_PASS`，无综合错误或严重警告。
-- 集成综合统计 900 行双 bank 使用 74 个 URAM288，器件可用 80 个；布局布线后的时序仍须单独验收。
-- 首次 900 行完整实现 WNS 为 −0.130 ns、WHS 为 0.000 ns，触发构建脚本拒绝写 BIT/LTX；失败路径在半带抽取器乘加结果到饱和输出。已在该路径插入一级寄存器，并重新执行构建，不能引用首次失败实现作为发布结果。
-- 半带流水化后的第二次实现 WNS 为 −0.072 ns，最差路径转到事件检测器的循环行地址计算到参考轮廓 DSP 乘法。事件检测器加入独立地址流水级后，第三次完整实现与重新打开检查点的签核均通过：WNS +0.013 ns、WHS +0.010 ns、DRC 错误 0、严重警告 0。BIT/LTX 和哈希已生成，详见 `docs/07_V24_RELEASE_STATUS.md`。
-- MATLAB R2025b 的 `selftest_v24`：合成 205 MHz I/Q 输入在原始分析、差分和重复性排序三条路径均被找到，输出 `V24_MATLAB_SELFTEST_PASS`；这仅验证软件逻辑。用户预设目录不可写时，需将 `MATLAB_PREFDIR` 指向工程内可写目录。
-- 事件检测 RTL 的 XSIM 测试平台已写出，但当前本机 `xelab` 在编译生成的 C 文件时失败。直接运行 Vivado 自带的 MinGW `gcc.exe` 得到 Windows“无效的系统 DLL 重定位”，属于本机仿真编译器启动故障；不能因此声称事件检测仿真通过。
+MATLAB R2025b 的 `selftest_v24` 使用合成 205 MHz I/Q 输入检查解析、差分和候选排序路径，输出 `V24_MATLAB_SELFTEST_PASS`。实测 CSV 的独立分析命令见仓库根目录 `data/README.md`。

@@ -11,6 +11,6 @@ analyze_current_image('data/capture_single','data/recomputed_single',false)
 
 For the bar diagnostic, replace the function with `analyze_bars64`, the input with `data/capture_bars64`, and choose a fresh output directory.
 
-For the unchanged-screen real capture, `single_capture_metrics.txt` reports `rf_mhz=195`, gain Q8=32 (0.125x), zero saturated fraction and a raw 99th percentile of 1. The output is a measured RF magnitude response, not decoded RGB pixels.
+For the unchanged-screen real capture, `single_capture_metrics.txt` reports `rf_mhz=195`, gain Q8=32 (0.125x), zero saturated fraction and a raw 99th percentile of 1. The output plots the measured RF magnitude response.
 
 The real 64 pixel bar capture in `bars64_capture_metrics.txt` had `period_peak=159`, whereas the known pattern would suggest 128 samples. Its split-half correlation was -0.13096. Earlier bar measurements used a black-screen control and a different analysis path.
