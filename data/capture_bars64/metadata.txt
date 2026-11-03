@@ -1,0 +1,14 @@
+line_samples=1344
+frame_lines=900
+segments=10
+frame_counter_at_export=1
+feature_gain_q8=32
+feature_mode=0
+iq_order=I_then_Q_when_mode_3
+ddc_target_mhz=194.9999999953434
+ddc_mixer_mhz=5.000000004656613
+ddc_phase_inc=330382100
+ddc_control=3
+event_status=64
+event_metric_q16=65535
+event_best_lag=0

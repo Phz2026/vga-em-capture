@@ -1,0 +1,8 @@
+source=SINGLE_UNCHANGED_DISPLAY
+meaning=RF_magnitude_response_not_RGB_reconstruction
+rf_mhz=195.000000
+gain_q8=32
+frame_counter=1
+saturated_fraction=0.00000000
+raw_p01=0
+raw_p99=1

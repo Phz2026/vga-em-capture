@@ -1,0 +1,28 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
+--------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version      : Vivado v.2026.1 (win64) Build 6511674 Tue Jun 16 11:02:23 MDT 2026
+| Date              : Wed Oct 21 22:49:26 2026
+| Host              : zph running 64-bit major release  (build 9200)
+| Command           : report_cdc -file D:/ChatGPT/2026-09-13/new-chat-2/VGA_EM_V24_V21_COMPLETE/output/reports/cdc.rpt
+| Design            : vga_em_bd_wrapper
+| Device            : xczu27dr-ffve1156
+| Speed File        : -2  PRODUCTION 1.30 05-03-2022
+| Design State      : Routed
+| Temperature Grade : I
+--------------------------------------------------------------------------------------------------------------------------------------------------
+
+CDC Report
+
+Severity  Source Clock                                                                                         Destination Clock                                                                                    CDC Type                 Exceptions               Endpoints  Safe  Unsafe  Unknown  No ASYNC_REG  
+--------  ---------------------------------------------------------------------------------------------------  ---------------------------------------------------------------------------------------------------  -----------------------  -----------------------  ---------  ----  ------  -------  ------------  
+Warning   RFADC0_CLK                                                                                           clk_pl_0                                                                                             No Common Primary Clock  False Path                       8     8       0        0             0  
+Warning   RFADC1_CLK                                                                                           clk_pl_0                                                                                             No Common Primary Clock  False Path                       8     8       0        0             0  
+Warning   RFADC2_CLK                                                                                           clk_pl_0                                                                                             No Common Primary Clock  False Path                       8     8       0        0             0  
+Warning   RFADC3_CLK                                                                                           clk_pl_0                                                                                             No Common Primary Clock  False Path                       8     8       0        0             0  
+Warning   RFDAC0_CLK                                                                                           clk_pl_0                                                                                             No Common Primary Clock  False Path                       8     8       0        0             0  
+Warning   RFDAC1_CLK                                                                                           clk_pl_0                                                                                             No Common Primary Clock  False Path                       8     8       0        0             0  
+Warning   clk_out1_vga_em_bd_axis_clock_0                                                                      clk_pl_0                                                                                             No Common Primary Clock  Max Delay Datapath Only          4     4       0        0             0  
+Warning   dbg_hub/inst/BSCANID.u_xsdbm_id/SWITCH_N_EXT_BSCAN.bscan_inst/SERIES7_BSCAN.bscan_inst/INTERNAL_TCK  clk_pl_0                                                                                             No Common Primary Clock  Max Delay Datapath Only         11    11       0        0             0  
+Warning   clk_pl_0                                                                                             dbg_hub/inst/BSCANID.u_xsdbm_id/SWITCH_N_EXT_BSCAN.bscan_inst/SERIES7_BSCAN.bscan_inst/INTERNAL_TCK  No Common Primary Clock  Max Delay Datapath Only          4     4       0        0             0  
+Info      clk_pl_0                                                                                             clk_out1_vga_em_bd_axis_clock_0                                                                      No Common Primary Clock  Max Delay Datapath Only          2     2       0        0             0  
+

@@ -1,0 +1,6 @@
+"reference","test","x_shift","x_correlation","y_shift","y_correlation"
+"v203_checker16_g1_r1","v203_checker16_g1_r2","1168","0.903966","107","0.311094"
+"v203_vstripe16_g1_r1","v203_vstripe16_g1_r2","720","0.937671","213","0.162913"
+"v203_hstripe8_g4_r1","v203_hstripe8_g4_r2","858","0.814599","356","0.176352"
+"v203_checker16_g4_r1","v203_checker16_g4_r2","716","0.950213","231","0.267096"
+"v203_asymmetric_g4_r1","v203_asymmetric_g4_r2","1268","0.896931","571","0.471406"

@@ -1,0 +1,9 @@
+bitstream_built=true
+timing_met=true
+setup_wns_ns=0.013
+hold_whs_ns=0.010
+drc_errors=0
+drc_critical_warnings=0
+hardware_verified=false
+bitstream=output/bitstream/full_v24.bit
+debug_probes=output/bitstream/full_v24.ltx

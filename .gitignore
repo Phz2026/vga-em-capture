@@ -1,0 +1,17 @@
+*.jou
+*.log
+*.dcp
+*.pb
+*.wdb
+*.wcfg
+.Xil/
+**/.Xil/
+**/*.cache/
+**/xsim.dir/
+**/runs/
+**/automation_runs/
+**/ip_user_files/
+**/analysis_*/
+**/matlab_prefs/
+*.asv
+*.autosave

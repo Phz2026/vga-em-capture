@@ -1,0 +1,19 @@
+VGA_EM_V21_FULL MATLAB dataset integrity report
+date=2026-10-19
+image_captures=19
+v203_q8_fixed=14
+pre_q8_fix=5
+spectrum_captures=7
+image_segments_per_capture=9
+stream_samples_per_capture=1179648
+frame_samples_per_capture=1083264
+spectrum_bins_per_capture=65536
+line_samples=1344
+frame_lines=806
+source_bytes=915669987
+address_continuity=PASS
+valid_bits=PASS
+frame_id_consistency=PASS
+image_mat_payload_sha256_roundtrip=PASS
+spectrum_mat_payload_sha256_roundtrip=PASS
+post_probe_move_black_baseline=NOT_CAPTURED

@@ -1,0 +1,8 @@
+VGA EM session 2026-10-19
+captures=19, raster=1344x806, image_sample_rate=65000000 Hz
+asymmetric repeat sample shift=768686, correlation=0.025513
+old-black profile alignment dx=393 dy=596 xcorr=0.930175 ycorr=0.289863
+WARNING: v203_black_g4_r1 was captured before the probe move. Background-subtracted images are provisional.
+Use a post-asymmetric black capture before claiming blind image recovery.
+The raw 8-bit feature is magnitude after two 8-sample moving averages; phase was discarded in PL.
+Destriping suppresses additive row/column structure but can also remove broad real image content.

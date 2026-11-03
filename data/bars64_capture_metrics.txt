@@ -1,0 +1,8 @@
+meaning=known_64px_bars_period_diagnostic_not_blind_image_recovery
+uses_black_control=0
+period_peak=159
+period_peak_score=0.15790
+split_half_correlation=-0.13096
+harmonic_128=0.000345055
+square_shape_score=0.05651
+saturated_fraction=0
